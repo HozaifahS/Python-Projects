@@ -1,0 +1,37 @@
+
+t =0
+
+def set_timer():
+    global t
+    t=t+int(e1.get())
+    return t
+def countdown():
+    global t
+    if t > 0:
+        print(t)
+        l1.config(text=t)
+        t= t-1
+        l1.after(1000,countdown)
+    elif t==0:
+        l1.config(text="FINISH")
+
+
+root = Tk()
+root.title("CountDown")
+root.geometry("215x160")
+root.config(background="orange")
+
+l1 = Label(root,font="time 20", fg="red",bg="orange")
+l1.grid(row=1,column=2)
+
+times=StringVar()
+e1 = Entry(root,textvariable=times)
+e1.grid(row=3, column=2)
+
+button1=Button(root,text="SET",width=18,bd=2,fg="red",command=set_timer)
+button1.grid(row=4,column=2,padx=21)
+
+button2=Button(root,text="START",width=18,bd=2,fg="red",command=countdown)
+button2.grid(row=6,column=2,padx=21)
+
+root.mainloop()
